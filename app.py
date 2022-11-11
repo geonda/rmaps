@@ -12,7 +12,7 @@ left_jumbotron = dash.html.Div(
         dash.html.H2("Locate your next whiskey bar", className="display-3"),
         dash.html.Hr(className="my-2"),
         dash. html.P(
-            "go a head and press the button "
+            "go ahead and press the button "
         ),
         dbc.Button("show the way", id='submit-val',
                    color="light", outline=True),
