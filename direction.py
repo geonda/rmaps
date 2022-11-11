@@ -1,12 +1,11 @@
 import googlemaps
 from datetime import datetime
 import pandas as pd
-import plotly.express as px
-import time
 import geocoder
 import numpy as np
 import plotly.graph_objects as go
 from random import randrange
+import polyline
 import config
 class maps(object):
     """docstring for maps."""
@@ -41,23 +40,26 @@ class maps(object):
         lat=[]
         lng=[]
         time=[]
-        import polyline
+       
 
         for item in dircetctions_df['legs'][0][0]['steps']:
              tmp = polyline.decode(item['polyline']['points'])
-             print(tmp)
+            #  print(tmp)
              for items in tmp:
                  lat.append(items[0])
                  lng.append(items[1])
 
-
+        # print(lat,lng)
         fig.add_trace(go.Scattermapbox( lat=lat, lon=lng,
+                                        mode="markers+lines",
+                                        marker_color='blue',
+                                        marker_size=20,
+                                        opacity=0.5,
 
                              #center = dict(lat = g.center)
                                #mapbox_style="open-street-map"
                                ))
-        token = 'pk.eyJ1IjoiZ2VvbmRhIiwiYSI6ImNsNzI3aG9zZDBoaXkzdW45aTNzOGtkcjEifQ.QmENCq9Nyg8b6Iq8uhMvFQ'
-
+       
 
         fig.update_layout(
             title='',
@@ -65,7 +67,7 @@ class maps(object):
             hovermode='closest',
             showlegend=False,
             mapbox=dict(
-                accesstoken=token,
+                accesstoken=config.mapbox_token,
                 center=dict(
                     lat=g.latlng[0],
                     lon=g.latlng[1]
@@ -78,6 +80,8 @@ class maps(object):
         fig.update_layout(
             margin=dict(l=1, r=1, t=1, b=1),
             )
+        # fig.show()
+        self.fig=fig
 
 
 

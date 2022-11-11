@@ -20,7 +20,7 @@ left_jumbotron = dash.html.Div(
     ],
     className="h-100 p-5 text-white bg-dark rounded-3",
 )
-
+import rmaps_test
 
 @app.callback(
     dash.Output('container-button-timestamp', 'children'),
@@ -31,15 +31,15 @@ def displayClick(n1, n2):
     if 'submit-val-2' == dash.ctx.triggered_id:
         fig = go.Figure()
         ws1 = rmaps.maps(fig)
-        output = dash.dcc.Graph(figure=fig, style={'height': '100vh'})
+        output = dash.dcc.Graph(figure=ws1.fig, style={'height': '100vh'})
     elif 'submit-val' == dash.ctx.triggered_id:
         fig = go.Figure()
-        ws2 = direction.maps(fig)
-        output = dash.dcc.Graph(figure=fig, style={'height': '100vh'})
+        ws2 = rmaps_test.maps(fig)  # direction.maps(fig)
+        output = dash.dcc.Graph(figure=ws2.fig, style={'height': '100vh'})
     else:
         fig = go.Figure()
         ws1 = rmaps.maps(fig)
-        output = dash.dcc.Graph(figure=fig, style={'height': '100vh'})
+        output = dash.dcc.Graph(figure=ws1.fig, style={'height': '100vh'})
     return dash.html.Div(output)
 
 

@@ -62,3 +62,5 @@ class maps(object):
         fig.update_layout(
             margin=dict(l=1, r=1, t=1, b=1),
         )
+        self.fig=fig
+        
